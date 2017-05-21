@@ -38,7 +38,7 @@ class Series(db.Model):
         return '<Series #{}>'.format(self.id)
 
     def __str__(self):
-        return u"<Series '{}'>".format(self.title)
+        return "<Series '{}'>".format(self.title)
 
 
 @implements_to_string
@@ -63,7 +63,7 @@ class Chapter(db.Model):
         return '<Chapter #{}/{}>'.format(self.id, self.series_id)
 
     def __str__(self):
-        return u"<Chapter '{}'/'{}'>".format(self.series.title, self.title)
+        return "<Chapter '{}'/'{}'>".format(self.series.title, self.title)
 
 
 class Config(db.Model):

@@ -13,7 +13,7 @@ def test_index_with_empty_db(app, db):
     with app.test_client() as client:
         d = client.get('/').doc
         assert cache.get(index_cache_key()) is not None
-        assert d.cssselect('.no-feeds')[0].text == u'구독할 수 있는 웹툰이 없습니다.'
+        assert d.cssselect('.no-feeds')[0].text == '구독할 수 있는 웹툰이 없습니다.'
         assert d.cssselect('.series') == []
 
 

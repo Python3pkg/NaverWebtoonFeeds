@@ -15,9 +15,9 @@ _identity = lambda x: x
 if not PY2:
     text_type = str
     string_types = (str,)
-    iterkeys = lambda d: iter(d.keys())
-    itervalues = lambda d: iter(d.values())
-    iteritems = lambda d: iter(d.items())
+    iterkeys = lambda d: iter(list(d.keys()))
+    itervalues = lambda d: iter(list(d.values()))
+    iteritems = lambda d: iter(list(d.items()))
 
     from urllib.parse import urlparse, urlunparse
 
@@ -30,13 +30,13 @@ if not PY2:
 
     from urllib.request import URLError, urlopen
 else:
-    text_type = unicode
-    string_types = (str, unicode)
-    iterkeys = lambda d: d.iterkeys()
-    itervalues = lambda d: d.itervalues()
-    iteritems = lambda d: d.iteritems()
+    text_type = str
+    string_types = (str, str)
+    iterkeys = lambda d: iter(d.keys())
+    itervalues = lambda d: iter(d.values())
+    iteritems = lambda d: iter(d.items())
 
-    from urlparse import urlparse, urlunparse
+    from urllib.parse import urlparse, urlunparse
 
     def to_native(x, charset=sys.getdefaultencoding(), errors='strict'):
         if x is None or isinstance(x, str):
@@ -48,4 +48,5 @@ else:
         cls.__str__ = lambda x: x.__unicode__().encode('utf-8')
         return cls
 
-    from urllib2 import URLError, urlopen
+    from urllib.error import URLError
+    from urllib.request import urlopen

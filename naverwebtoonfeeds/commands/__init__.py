@@ -5,7 +5,7 @@
     Defines command line tasks.
 
 """
-from __future__ import print_function
+
 
 import logging.config
 import sys

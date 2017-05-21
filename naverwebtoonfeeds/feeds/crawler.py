@@ -73,7 +73,7 @@ class Crawler(object):
                     series.new_chapters_available = True
 
         existing_series_ids = set(series.id for series in series_list)
-        new_series_ids = fetched_data.viewkeys() - existing_series_ids
+        new_series_ids = fetched_data.keys() - existing_series_ids
         self._add_new_series(new_series_ids, fetched_data, update_all, updated)
 
         self._commit()
@@ -208,7 +208,7 @@ class Crawler(object):
         current_last_chapter = (series.chapters[0].id if len(series.chapters)
                                 else 0)
         start = current_last_chapter + 1
-        chapter_ids = range(start, series.last_chapter + 1)
+        chapter_ids = list(range(start, series.last_chapter + 1))
         logger.debug('New chapters: %s', chapter_ids)
         for chapter_id in chapter_ids:
             chapter = Chapter(series=series, id=chapter_id)
@@ -536,7 +536,7 @@ def parse_series_info(doc, series_id):
                            .text_content().strip(),
         'description': inner_html(comicinfo.xpath('p[@class="txt"]')[0]),
         'last_chapter': int(re.search(r'no=(\d+)', permalink).group(1)),
-        'is_completed': status == u'완결웹툰',
+        'is_completed': status == '완결웹툰',
         'thumbnail_url': doc.xpath('//meta[@property="og:image"]/@content')[0],
     }
 

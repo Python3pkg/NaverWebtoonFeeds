@@ -76,7 +76,7 @@ class Response(ResponseBase):
 
     def __init__(self, *args, **kwargs):
         super(Response, self).__init__(*args, **kwargs)
-        print(self.mimetype)
+        print((self.mimetype))
         if self.mimetype in self.html_mimetypes:
             self.doc = lxml.html.fromstring(self.data)
         elif self.mimetype in self.xml_mimetypes:
@@ -105,7 +105,7 @@ install_opener(mock_opener)
 
 def mock_obj(**kwargs):
     mock = Mock()
-    for key, value in kwargs.items():
+    for key, value in list(kwargs.items()):
         setattr(mock, key, value)
     return mock
 

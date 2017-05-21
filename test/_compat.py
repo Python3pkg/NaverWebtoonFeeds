@@ -9,5 +9,5 @@ if not PY2:
     from urllib.request import build_opener, HTTPHandler, install_opener
     from urllib.response import addinfourl
 else:
-    import httplib as http_client
-    from urllib2 import addinfourl, build_opener, HTTPHandler, install_opener
+    import http.client as http_client
+    from urllib.request import build_opener, HTTPHandler, install_opener

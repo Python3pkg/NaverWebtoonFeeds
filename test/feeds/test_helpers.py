@@ -51,8 +51,8 @@ def test_inner_html_with_self_closing_element():
 
 
 def test_inner_html_with_unicode():
-    elem = lxml.html.fromstring(u'<p>논-아스키</p>')
-    assert inner_html(elem) == u'논-아스키'
+    elem = lxml.html.fromstring('<p>논-아스키</p>')
+    assert inner_html(elem) == '논-아스키'
 
 
 def test_get_public_ip(app):
